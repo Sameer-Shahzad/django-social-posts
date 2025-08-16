@@ -5,13 +5,46 @@
 <head>
     <title>
         {% block title %}
-        Chai aur Django
+        Django Project
         {% endblock %}
     </title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-black text-white">
+    <nav class="bg-gray-800 text-white px-4 py-3 flex items-center justify-between fixed w-full top-0">
+        <div class="flex items-center space-x-6">
+            <span class="text-2xl font-bold">Tweetbar</span>
+        
+            <a href="#" class="hover:text-gray-300">Home</a>
+
+            <div class="relative group">
+                <button class="hover:text-gray-300 focus:outline-none">
+                    Menu ▼
+                </button>
+                <div class="absolute hidden group-hover:block bg-white 
+                
+                text-black mt-2 rounded shadow-lg min-w-[150px]">
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Option 1</a>
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Option 2</a>
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Option 3</a>
+                </div>
+            </div>
+        </div>
+        <div class="flex items-center space-x-2">
+            <input 
+                type="text" 
+                placeholder="Search..." 
+                class="px-3 py-1 rounded bg-gray-600 text-gray-300 placeholder-gray-400"
+            >
+            <button class="bg-blue-500 px-4 py-1 rounded hover:bg-blue-600">
+                Search
+            </button>
+        </div>
+    </nav>
+
     <div class="container">
-        {% block content  %}
+        {% block content %}
+
         {% endblock %}
     </div>
 </body>
