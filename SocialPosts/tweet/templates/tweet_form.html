@@ -1,19 +1,27 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <h1 class="w-full text-4xl font-bold flex justify-center h-screen pt-16">Welcome to Django Project</h1>
+    <h1 class="w-full text-4xl font-bold flex justify-center pt-16 py-10">Welcome to Tweetbar</h1>
 
     <h2>
         {% if form.instance.pk %} 
         Edit Tweet 
         {% else %} 
-        Create Tweet 
+        Create Tweet
         {% endif %}
 
-        <form method="POST" enctype="multipart/form-data" class="form ">
+        <form method="POST" enctype="multipart/form-data" class="flex flex-col items-center pt-16 space-y-6 ">
+            {% csrf_token %}
             {{ form.as_p }}
+            <button class="bg-white text-black rounded p-1.5"type="submit">Submit</button>
+            <style>
+                textarea {
+                    color: black;
+                }
+            </style>
         </form>
-           
+
+        <a href="{% url 'tweet_list' %}" class="text-blue-500 hover:underline">Back to Tweets</a>
     </h2>
 {% endblock %}
 

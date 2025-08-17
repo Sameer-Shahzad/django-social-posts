@@ -6,3 +6,4 @@ class TweetForm (forms.ModelForm):
         model = Tweet
         fields = ['text', 
                 'photo']
+        
