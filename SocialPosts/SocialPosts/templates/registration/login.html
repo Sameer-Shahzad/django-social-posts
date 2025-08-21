@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+<h2 class="mt-4">Login Form</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="bg-red-500 text-white rounded p-2 hover:bg-red-600" type="submit">Register</button>
+    </form>
+
+    <p>Do not have an account? <a href="{% url 'register' %}" class="text-blue-500 hover:underline">Register here</a></p>
+{% endblock %}
