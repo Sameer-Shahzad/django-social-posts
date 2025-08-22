@@ -3,9 +3,14 @@
 
 {% block content %}
 <h1>Registration Form</h1>
-    <form method="POST">
+    <form method="POST" class="mt-4">
         {% csrf_token %}
         {{ form.as_p }}
         <button class="bg-red-500 text-white rounded p-2 hover:bg-red-600" type="submit">Register</button>
+        <style>
+            input {
+                color: black;
+            }
+        </style>
     </form>
 {% endblock %}

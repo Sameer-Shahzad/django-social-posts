@@ -39,6 +39,25 @@
             <button class="bg-blue-500 px-4 py-1 rounded hover:bg-blue-600">
                 Search
             </button>
+            <a href={% url 'tweet_list' %} class="bg-yellow-500 px-4 py-1 rounded hover:bg-yellow-600">
+                Tweet Home
+            </a>
+            
+            {% if user.is_authenticated %}
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="bg-red-500 px-4 py-1 rounded hover:bg-red-600">
+                    Logout
+                </button>
+            </form>
+            {% else %}
+            <a href="{% url 'register' %}" class="bg-red-500 px-4 py-1 rounded hover:bg-red-600">
+                Register
+            </a>
+            <a href="{% url 'login' %}" class="bg-green-500 px-4 py-1 rounded hover:bg-green-600">
+                Login
+            </a>
+            {% endif %}
         </div>
     </nav>
 

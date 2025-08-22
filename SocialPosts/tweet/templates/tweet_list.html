@@ -1,34 +1,45 @@
 {% extends "layout.html" %}
 {% block content %}
   <div class="container mx-auto px-4 py-8">
-    <h1 class="text-4xl mt-12 font-bold text-center mb-8">
+    <h1 class="text-4xl mt-4 font-bold text-center mb-8">
       Welcome to Tweetbar
     </h1>
     <div class="flex justify-center mb-20">
       <a href="{% url 'tweet_create' %}" 
-        class="px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700">
+        class="px-6 py-3 bg-purple-600 text-white rounded-lg shadow hover:bg-purple-700">
         Create a Tweet
       </a>
     </div>
-    <div class="flex flex-wrap gap-6">
-      {% for tweet in tweets %}
-      <div class="bg-white shadow-md rounded-xl overflow-hidden w-72">
-        <img src="{{ tweet.photo.url }}" 
-            alt="Tweet Image" 
-            class="w-full p-2 h-48 object-center rounded-2xl">
-            <div class="p-4">
-            <h5 class="text-lg font-semibold text-gray-800">{{ tweet.user.username }}</h5>
-            <p class="text-gray-600 mt-2">{{ tweet.text }}</p>
-            <div class="flex gap-2 mt-4">
-                <a href="{% url 'tweet_edit' tweet.id %}" 
-                class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Edit</a>
-                <a href="{% url 'tweet_delete' tweet.id %}" 
-                class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">Delete</a>
-            </div>
+   <div class="flex flex-wrap gap-6">
+  {% for tweet in tweets %}
+  <div class="bg-white shadow-md rounded-xl overflow-hidden w-72">
+      
+    {% if tweet.photo %}
+      <img src="{{ tweet.photo.url }}" 
+          alt="Tweet Image" 
+          class="w-full p-2 h-48 object-center rounded-2xl">
+      {% else %}
+      <div class="w-full p-2 h-48 flex items-center justify-center bg-gray-200 text-gray-500 rounded-2xl">
+          No photo uploaded
+      </div>
+      {% endif %}
+
+      <div class="p-4">
+        <h5 class="text-lg font-semibold text-gray-800">{{ tweet.user.username }}</h5>
+        <p class="text-gray-600 mt-2">{{ tweet.text }}</p>
+        <div class="flex gap-2 mt-4">
+          {% if tweet.user == user %}
+          <a href="{% url 'tweet_edit' tweet.id %}" 
+             class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Edit</a>
+          <a href="{% url 'tweet_delete' tweet.id %}" 
+             class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">Delete</a>
+            {% endif %}
         </div>
       </div>
-      {% endfor %}
     </div>
+    {% endfor %}
+  </div>
+
 
   </div>
 {% endblock %}
